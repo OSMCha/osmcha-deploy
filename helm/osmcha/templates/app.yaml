@@ -87,6 +87,9 @@ spec:
           timeoutSeconds: 60
       - name: frontend-nginx
         image: "{{ .Values.app.ui.image.repository }}:{{ .Values.app.ui.image.tag }}"
+        env:
+        - name: BACKEND_URL
+          value: http://localhost:5000
         ports:
         - containerPort: 80
         volumeMounts:
