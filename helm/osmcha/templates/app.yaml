@@ -19,42 +19,14 @@ spec:
       initContainers:
       - name: osmcha-init
         image: {{ .Values.app.api.image.repository }}:{{ .Values.app.api.image.tag }}
-        command:
-        - /bin/sh
-        - -c
-        - |
-          python manage.py collectstatic --noinput
-          mkdir -p /staticfiles/static
-          cp -r /app/staticfiles/* /staticfiles/static/
+        command: ["python", "manage.py", "collectstatic", "--noinput"]
 
         env:
-        - name: POSTGRES_HOST
-          value: {{ .Values.app.api.postgres_host}}
-        - name: PGHOST
-          value: {{ .Values.app.api.postgres_host}}
-        - name: POSTGRES_PORT
-          value: "5432"
-        - name: POSTGRES_USER
-          value: {{ .Values.app.api.postgres_user}}
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: osmcha-db-credentials
-              key: password
-        - name: POSTGRES_DATABASE
-          value: {{ .Values.app.api.postgres_database}}
-        - name: DJANGO_SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: django-secret-key
-              key: django_secret_key
         - name: DJANGO_SETTINGS_MODULE
           value: "config.settings.production"
-        - name: REDIS_URL
-          value: {{ .Values.app.api.redis_url }}
         volumeMounts:
         - name: staticfiles
-          mountPath: /staticfiles
+          mountPath: /app/staticfiles
       containers:
       - name: osmcha-api
         image: {{ .Values.app.api.image.repository }}:{{ .Values.app.api.image.tag }}
@@ -134,7 +106,8 @@ spec:
         - containerPort: 80
         volumeMounts:
           - name: staticfiles
-            mountPath: /staticfiles
+            mountPath: /srv/www/static/django
+            readOnly: true
       volumes:
       - name: staticfiles
         emptyDir: {}
