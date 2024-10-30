@@ -30,21 +30,6 @@ spec:
       containers:
       - name: osmcha-api
         image: {{ .Values.app.api.image.repository }}:{{ .Values.app.api.image.tag }}
-        command:
-        - gunicorn
-        - "--timeout"
-        - "120"
-        - "--keep-alive"
-        - "2"
-        - "--workers"
-        - "5"
-        - "--bind"
-        - 0.0.0.0:5000
-        - --log-file
-        - "-"
-        - --access-logfile
-        - "-"
-        - config.wsgi
         resources:
           {{- toYaml .Values.app.api.resources | nindent 10 }}
         env:
@@ -86,6 +71,8 @@ spec:
           value: "False"
         - name: DJANGO_ENABLE_CHANGESET_COMMENTS
           value: "True"
+        - name: WEB_CONCURRENCY
+          value: "5"
         ports:
         - containerPort: 5000
         volumeMounts:
