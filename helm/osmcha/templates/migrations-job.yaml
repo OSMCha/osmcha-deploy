@@ -29,20 +29,18 @@ spec:
         - -c
         - python manage.py migrate
         env:
-        - name: POSTGRES_HOST
-          value: {{ .Values.app.api.postgres_host}}
         - name: PGHOST
           value: {{ .Values.app.api.postgres_host}}
-        - name: POSTGRES_PORT
+        - name: PGPORT
           value: "5432"
-        - name: POSTGRES_USER
+        - name: PGUSER
           value: {{ .Values.app.api.postgres_user}}
-        - name: POSTGRES_PASSWORD
+        - name: PGPASSWORD
           valueFrom:
             secretKeyRef:
               name: osmcha-db-credentials
               key: password
-        - name: POSTGRES_DATABASE
+        - name: PGDATABASE
           value: {{ .Values.app.api.postgres_database}}
         - name: DJANGO_SECRET_KEY
           valueFrom:
@@ -51,8 +49,6 @@ spec:
               key: django_secret_key
         - name: DJANGO_SETTINGS_MODULE
           value: "config.settings.production"
-        - name: OSMCHA_FRONTEND_VERSION
-          value: {{ .Values.app.api.frontend_tag }}
         - name: REDIS_URL
           value: {{ .Values.app.api.redis_url }}
       restartPolicy: Never
