@@ -17,7 +17,7 @@ app:
   api:
     image:
       repository: ghcr.io/osmcha/osmcha-django
-      tag: 59281c7cb1796bcd7406559d1186a70660adec10
+      tag: v4.26.0
     resources:
       requests:
         memory: "2G"
@@ -35,7 +35,7 @@ app:
     nodeSelector: {}
     image:
       repository: ghcr.io/osmcha/osmcha-frontend
-      tag: 646874a3739a03b6c91c131f652f4e727e5aa408
+      tag: v1.1.0
 
 # OSMCha adiff service
 adiff_service:
