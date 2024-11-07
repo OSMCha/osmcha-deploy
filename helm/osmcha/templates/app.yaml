@@ -80,7 +80,7 @@ spec:
           mountPath: /staticfiles
         livenessProbe:
           httpGet:
-            path: /health
+            path: /api/v1/health
             port: 5000
             scheme: HTTP
           # initialDelaySeconds: 60
