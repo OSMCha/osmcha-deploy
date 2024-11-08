@@ -26,20 +26,18 @@ spec:
             - -c
             - timeout 3600s python manage.py fetchchangesets
             env:
-            - name: POSTGRES_HOST
-              value: {{ .Values.app.api.postgres_host}}
             - name: PGHOST
               value: {{ .Values.app.api.postgres_host}}
-            - name: POSTGRES_PORT
+            - name: PGPORT
               value: "5432"
-            - name: POSTGRES_USER
+            - name: PGUSER
               value: {{ .Values.app.api.postgres_user}}
-            - name: POSTGRES_PASSWORD
+            - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
                   name: osmcha-db-credentials
                   key: password
-            - name: POSTGRES_DATABASE
+            - name: PGDATABASE
               value: {{ .Values.app.api.postgres_database}}
             - name: DJANGO_SECRET_KEY
               valueFrom:
