@@ -11,7 +11,7 @@ secrets:
   osmcha_admin_token:
 
 app:
-  replicas: 2
+  replicas: 3
   host: osmcha.org
 
   api:
