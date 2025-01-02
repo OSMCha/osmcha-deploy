@@ -44,3 +44,5 @@ spec:
               value: {{ .Values.adiff_service.redis_url }}
             - name: NumberOfWorkers
               value: {{ .Values.adiff_service.worker_count | quote }}
+            - name: NODE_OPTIONS
+              value: --max-old-space-size=8192
