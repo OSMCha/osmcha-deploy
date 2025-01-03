@@ -11,7 +11,7 @@ secrets:
   osmcha_admin_token:
 
 app:
-  replicas: 3
+  replicas: 1
   host: osmcha.org
 
   api:
@@ -20,11 +20,11 @@ app:
       tag: v4.26.0
     resources:
       requests:
-        memory: "2G"
-        cpu: "1"
-      limits:
         memory: "4G"
         cpu: "2"
+      limits:
+        memory: "8G"
+        cpu: "4"
     postgres_host: osmcha-database.cz9ktd5n6tn5.us-east-1.rds.amazonaws.com
     postgres_user: postgres
     postgres_database: osmcha
