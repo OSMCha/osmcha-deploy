@@ -94,6 +94,17 @@ module "eks" {
       }
     }
   }
+
+  node_security_group_additional_rules = {
+    ingress_self_all = {
+      description = "Node to node ingress on all ports (default only permits ingress on unprivileged ports)"
+      protocol    = "tcp"
+      from_port   = 1
+      to_port     = 65535
+      type        = "ingress"
+      self        = true
+    }
+  }
 }
 
 # Secret for Django secret key
