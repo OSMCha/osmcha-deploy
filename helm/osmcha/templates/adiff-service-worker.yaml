@@ -35,11 +35,14 @@ spec:
                 secretKeyRef:
                   name: osmcha-real-changesets-credentials
                   key: secret_key
-            - name: OsmchaAdminToken
-              valueFrom:
-                secretKeyRef:
-                  name: osmcha-admin-token
-                  key: osmcha_admin_token
+            # NOTE: this is intentionally disabled; the job of uploading tag changes
+            # is now performed by https://github.com/OSMCha/changeset-adiffs-worker
+            # Omitting this token causes osm-adiff-service to skip uploading tag changes.
+            # - name: OsmchaAdminToken
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: osmcha-admin-token
+            #       key: osmcha_admin_token
             - name: RedisServer
               value: {{ .Values.adiff_service.redis_url }}
             - name: NumberOfWorkers
