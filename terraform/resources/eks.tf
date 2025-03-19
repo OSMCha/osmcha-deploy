@@ -65,20 +65,6 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    default = {
-      name = "default"
-
-      instance_types = ["t3.small"]
-
-      min_size     = 0
-      max_size     = 1
-
-      # Needed by the aws-ebs-csi-driver
-      iam_role_additional_policies = {
-        AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-      }
-    }
-
     regular = {
       name = "regular"
 
