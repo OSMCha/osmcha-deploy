@@ -68,11 +68,11 @@ module "eks" {
     regular = {
       name = "regular"
 
-      instance_types = ["t3.xlarge"]
+      instance_types = ["t3.large"]
 
       min_size     = 1
-      max_size     = 2
-      desired_size = 1
+      max_size     = 3
+      desired_size = 3
 
       # Needed by the aws-ebs-csi-driver
       iam_role_additional_policies = {
