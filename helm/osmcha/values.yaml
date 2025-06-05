@@ -36,12 +36,3 @@ app:
     image:
       repository: ghcr.io/osmcha/osmcha-frontend
       tag: v1.2.3
-
-# OSMCha adiff service
-adiff_service:
-  replicas: 1
-  image:
-    repository: ghcr.io/osmcha/osm-adiff-service
-    tag: b8f1228d0f8711d1c1185f003488c67db48b2e76
-  redis_url: redis://redis-master:6379
-  worker_count: "14"
