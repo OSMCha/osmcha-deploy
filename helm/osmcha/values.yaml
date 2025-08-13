@@ -35,4 +35,4 @@ app:
     nodeSelector: {}
     image:
       repository: ghcr.io/osmcha/osmcha-frontend
-      tag: v1.2.6
+      tag: v1.2.7
