@@ -28,6 +28,13 @@ jobs:
       uses: 'Azure/setup-helm@v1'
       with:
         version: 'v3.12.0'
+    - name: "Deploy k8s dashboard"
+      run: |
+        helm upgrade \
+        --repo https://kubernetes.github.io/dashboard/ \
+        --install kubernetes-dashboard kubernetes-dashboard \
+        --create-namespace --namespace kubernetes-dashboard \
+        -f helm/kubernetes-dashboard/values.yaml
     - name: "Deploy Helm Chart"
       run: |
         helm upgrade --install  -f helm/osmcha/values.yaml \

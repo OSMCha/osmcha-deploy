@@ -1,0 +1,14 @@
+nginx:
+  enabled: false
+
+cert-manager:
+  enabled: false
+
+metrics-server:
+  enabled: true
+
+metricsScraper:
+  enabled: true
+  args:
+    - --metric-duration=48h
+    - --metric-resolution=1m
